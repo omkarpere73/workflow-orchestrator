@@ -1,0 +1,45 @@
+:root { --bg:#eef2f4; --panel:#fff; --ink:#16232d; --mute:#5b6b76; --line:#d3dce1;
+  --brand:#0e6b8c; --task:#e4f1f6; --approval:#fdeccf; --cond:#e7e3f6; --bad:#b4331f; --ok:#1d7a4d; }
+@media (prefers-color-scheme: dark) { :root { --bg:#0f1a21; --panel:#172630; --ink:#e6eef2; --mute:#93a5b0;
+  --line:#2a3d49; --brand:#4fb4d6; --task:#173846; --approval:#43341a; --cond:#2c2848; --bad:#ff8a73; --ok:#58d39b; } }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--ink); font:15px/1.5 "Public Sans", system-ui, sans-serif; }
+header { display:flex; align-items:center; gap:24px; padding:12px 20px; background:var(--panel); border-bottom:1px solid var(--line); }
+h1 { font-size:18px; margin:0; font-weight:700; }
+h2 { font-size:16px; margin:0 0 4px; }
+nav { display:flex; gap:4px; flex:1; }
+nav button.on { background:var(--brand); color:#fff; border-color:var(--brand); }
+button { font:inherit; padding:6px 12px; border:1px solid var(--line); background:var(--panel); color:var(--ink); border-radius:6px; cursor:pointer; }
+button:hover { border-color:var(--brand); }
+button.primary { background:var(--brand); color:#fff; border-color:var(--brand); }
+button.danger { color:var(--bad); }
+:focus-visible { outline:2px solid var(--brand); outline-offset:2px; }
+input, select { font:inherit; width:100%; padding:6px 8px; border:1px solid var(--line); border-radius:6px; background:var(--bg); color:var(--ink); }
+label { display:block; font-size:13px; color:var(--mute); margin-bottom:10px; }
+.tenant select { width:auto; margin-left:6px; }
+.editor { display:grid; grid-template-columns:300px 1fr; height:calc(100vh - 57px); }
+aside { padding:16px; overflow:auto; background:var(--panel); border-right:1px solid var(--line); }
+.row { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:12px; }
+.panel { padding-top:12px; border-top:1px solid var(--line); margin-top:12px; display:flex; flex-direction:column; gap:6px; }
+.panel h3 { margin:0; font-size:15px; }
+.hint { color:var(--mute); font-size:13px; margin:6px 0; }
+.pad { padding:20px; }
+.canvas { background:var(--bg); }
+.node { padding:8px 12px; border:1.5px solid var(--line); border-radius:8px; min-width:150px; display:flex; flex-direction:column; font-size:13px; background:var(--panel); }
+.node.task { background:var(--task); } .node.approval { background:var(--approval); } .node.condition { background:var(--cond); border-radius:20px; }
+.node.sel { border-color:var(--brand); box-shadow:0 0 0 2px var(--brand); }
+.node span { color:var(--mute); font-size:12px; } .node em { font-size:11px; color:var(--brand); font-style:normal; font-weight:700; }
+.dash { max-width:900px; margin:0 auto; padding:20px; display:grid; gap:28px; }
+.totals { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+.totals div { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:12px; color:var(--mute); font-size:13px; }
+.totals b { display:block; font-size:28px; color:var(--ink); } .totals b.bad { color:var(--bad); }
+.bar { display:grid; grid-template-columns:160px 1fr 190px; gap:12px; align-items:center; margin:8px 0; font-size:13px; }
+.bar > div { height:14px; background:var(--line); border-radius:7px; overflow:hidden; }
+.bar i { display:block; height:100%; background:var(--brand); } .bar i.warn { background:#d98a1f; }
+table { width:100%; border-collapse:collapse; background:var(--panel); border:1px solid var(--line); border-radius:8px; }
+th, td { text-align:left; padding:8px 12px; border-bottom:1px solid var(--line); font-size:13px; }
+tbody tr { cursor:pointer; } tbody tr:hover, tbody tr:focus { background:var(--task); }
+.completed { color:var(--ok); } .failed { color:var(--bad); } .running { color:var(--brand); }
+.trail { padding-left:20px; font-size:13px; } .trail li { margin:4px 0; }
+.trail li.step_failed, .trail li.run_failed { color:var(--bad); } .trail span { color:var(--mute); }
+@media (max-width:760px) { .editor { grid-template-columns:1fr; height:auto; } .canvas { height:60vh; } .bar { grid-template-columns:90px 1fr; } .bar span:last-child { grid-column:1/-1; } .totals { grid-template-columns:1fr 1fr; } }

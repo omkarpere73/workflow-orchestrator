@@ -1,0 +1,29 @@
+name: invoice_approval
+start: validate
+steps:
+  validate:
+    type: task
+    action: validate_invoice
+    retries: 2
+    fail_rate: 0.25
+    next: route
+  route:
+    type: condition
+    branches:
+      - when: amount > 10000
+        next: finance_approval
+    default: manager_approval
+  manager_approval:
+    type: approval
+    approver: manager
+    next: pay
+  finance_approval:
+    type: approval
+    approver: finance_head
+    reject_rate: 0.2
+    on_reject: manager_approval
+    next: pay
+  pay:
+    type: task
+    action: pay_invoice
+    duration_ms: [300, 900]

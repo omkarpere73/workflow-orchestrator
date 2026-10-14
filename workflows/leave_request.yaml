@@ -1,0 +1,10 @@
+name: leave_request
+start: manager_review
+steps:
+  manager_review:
+    type: approval
+    approver: manager
+    next: hr_update
+  hr_update:
+    type: task
+    action: update_hr_record
